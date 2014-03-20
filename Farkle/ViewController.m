@@ -7,8 +7,18 @@
 //
 
 #import "ViewController.h"
+#import "DieLabel.h"
+#import "DieLabelDelegate.h"
 
-@interface ViewController ()
+@interface ViewController () <DieLabelDelegate>
+
+@property (strong, nonatomic) IBOutlet DieLabel *dieOne;
+@property (strong, nonatomic) IBOutlet DieLabel *dieTwo;
+@property (strong, nonatomic) IBOutlet DieLabel *dieThree;
+@property (strong, nonatomic) IBOutlet DieLabel *dieFour;
+@property (strong, nonatomic) IBOutlet DieLabel *dieFive;
+@property (strong, nonatomic) IBOutlet DieLabel *dieSix;
+@property NSMutableArray *dice;
 
 @end
 
@@ -16,14 +26,33 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [super viewDidLoad];    
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onRollButtonPressed:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (!self.dieOne.chosen)
+        [self.dieOne roll];
+    
+    if (!self.dieTwo.chosen)
+        [self.dieTwo roll];
+    
+    if (!self.dieThree.chosen)
+        [self.dieThree roll];
+    
+    if (!self.dieFour.chosen)
+        [self.dieFour roll];
+    
+    if (!self.dieFive.chosen)
+        [self.dieFive roll];
+    
+    if (!self.dieSix.chosen)
+        [self.dieSix roll];
+}
+
+- (void)didChooseDie:(id)dieLabel
+{
+    [self.dice addObject:dieLabel];
 }
 
 @end
